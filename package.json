@@ -1,0 +1,11 @@
+{
+  "name": "react-pan-zoom-element",
+  "version": "1.0.0",
+  "description": "React Element that allows it's content to be panned and zoomed.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}
