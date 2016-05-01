@@ -3,6 +3,11 @@ import Component from 'react-es6-component';
 
 export default class PanZoomElement extends Component {
 
+  static propTypes = {
+    width: React.PropTypes.number.isRequired,
+    height: React.PropTypes.number.isRequired
+  }
+
   constructor(){
     super(...arguments);
     this._lastX = 0;
@@ -20,6 +25,8 @@ export default class PanZoomElement extends Component {
     };
     return (
       <div className="pan-zoom-element"
+           ref="element"
+           style={{width: this.props.width, height: this.props.height}}
            onMouseDown={this._onMouseDown}
            onWheel={this._onWheel}>
         <div ref="content" className="content-container noselect"
@@ -54,15 +61,32 @@ export default class PanZoomElement extends Component {
   }
 
   _onWheel(event){
+    let zoomFactor;
     if(event.deltaY < 0){
-      this.setState({
-        scale: this.state.scale * 1.1
-      });
+      zoomFactor = 1.1;
     } else {
-      this.setState({
-        scale: this.state.scale * 0.9
-      });
+      zoomFactor = 0.9;
     }
-  }
 
+    const newZoom = zoomFactor * this.state.scale;
+
+    const realX = event.pageX - this.refs.element.offsetLeft;
+    const realY = event.pageY - this.refs.element.offsetTop;
+    const x = (realX - this.props.width / 2) / this.props.width;
+    const y = (realY - this.props.height / 2) / this.props.height;
+
+    const deltaX = x * (this.props.width / newZoom);
+    const deltaY = y * (this.props.height / newZoom);
+    console.log("Mouse", x, y);
+    console.log("Delta", deltaX, deltaY);
+    console.log("");
+
+    this.setState({
+      translate: {
+        x: this.state.translate.x + deltaX,
+        y: this.state.translate.y + deltaY
+      },
+      scale: this.state.scale * zoomFactor
+    });
+  }
 }

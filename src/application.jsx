@@ -7,7 +7,7 @@ class Application extends Component {
   static propTypes = { }
   render(){
     return (
-      <PanZoomElement>
+      <PanZoomElement width={1000} height={550}>
         <h1>Content</h1>
       </PanZoomElement>
     );
