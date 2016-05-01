@@ -1,5 +1,6 @@
 import React from 'react';
 import Component from 'react-es6-component';
+import Panner from 'centered-pan-zoom';
 
 export default class PanZoomElement extends Component {
 
@@ -12,10 +13,10 @@ export default class PanZoomElement extends Component {
     super(...arguments);
     this._lastX = 0;
     this._lastY = 0;
-
+    this._panner = new Panner({width: this.props.width, height: this.props.height});
     this.state = {
-      scale: 1,
-      translate: {x: 0, y: 0}
+      scale: this._panner.scale,
+      translate: this._panner.translate
     };
   }
 
@@ -47,46 +48,44 @@ export default class PanZoomElement extends Component {
   _onMouseUp(){
     document.removeEventListener('mouseup', this._onMouseUp, true);
     document.removeEventListener('mousemove', this._onMouseMove, true);
-    this._lastX = this.state.translate.x;
-    this._lastY = this.state.translate.y;
   }
 
   _onMouseMove(event){
-    this.setState({
-      translate: {
-        x: (event.pageX - this._startX) + this._lastX,
-        y: (event.pageY - this._startY) + this._lastY
+    this._panner.pan({
+      start: {
+        x: this._startX,
+        y: this._startY
+      },
+      end: {
+        x: event.pageX,
+        y: event.pageY
       }
+    });
+    this._startX = event.pageX;
+    this._startY = event.pageY;
+    console.log("Pan Translate", this._panner.translate);
+    this.setState({
+      translate: this._panner.translate,
+      scale: this._panner.scale
     });
   }
 
   _onWheel(event){
     let zoomFactor;
     if(event.deltaY < 0){
-      zoomFactor = 1.1;
+      zoomFactor = this.state.scale * 1.05;
     } else {
-      zoomFactor = 0.9;
+      zoomFactor = this.state.scale * 0.95;
     }
-
-    const newZoom = zoomFactor * this.state.scale;
-
-    const realX = event.pageX - this.refs.element.offsetLeft;
-    const realY = event.pageY - this.refs.element.offsetTop;
-    const x = (realX - this.props.width / 2) / this.props.width;
-    const y = (realY - this.props.height / 2) / this.props.height;
-
-    const deltaX = x * (this.props.width / newZoom);
-    const deltaY = y * (this.props.height / newZoom);
-    console.log("Mouse", x, y);
-    console.log("Delta", deltaX, deltaY);
-    console.log("");
-
+    console.log("Zoom", zoomFactor, {x: event.pageX, y: event.pageY})
+    console.log("Translate", this._panner.translate);
+    this._panner.zoom(zoomFactor, {x: event.pageX, y: event.pageY});
     this.setState({
       translate: {
-        x: this.state.translate.x + deltaX,
-        y: this.state.translate.y + deltaY
+        x: this._panner.translate.x + 0 * (this.props.width * this._panner.scale) / 2,
+        y: this._panner.translate.y + 0 * (this.props.height * this._panner.scale) / 2
       },
-      scale: this.state.scale * zoomFactor
+      scale: this._panner.scale
     });
   }
 }
