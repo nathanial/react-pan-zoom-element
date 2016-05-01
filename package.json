@@ -1,11 +1,44 @@
 {
-  "name": "react-pan-zoom-element",
+  "name": "react-component-boilerplate",
   "version": "1.0.0",
-  "description": "React Element that allows it's content to be panned and zoomed.",
-  "main": "index.js",
+  "description": "Boilerplate for a React component library.",
+  "main": "build/index.js",
+  "files": "build",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublish": "gulp dist",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/nathanial/react-component-boilerplate.git"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nathanial/react-component-boilerplate/issues"
+  },
+  "homepage": "https://github.com/nathanial/react-component-boilerplate#readme",
+  "devDependencies": {
+    "electron-connect": "^0.3.3",
+    "electron-prebuilt": "0.34.2",
+    "gulp": "3.9.0",
+    "gulp-babel": "5.2.0",
+    "gulp-less": "3.0.3",
+    "gulp-preprocess": "^2.0.0",
+    "gulp-sourcemaps": "1.5.2",
+    "gulp-useref": "^3.0.4",
+    "gulp-util": "3.0.6",
+    "gulp-watch": "4.3.4",
+    "merge-stream": "^1.0.0",
+    "react": "0.14.2",
+    "react-dom": "0.14.2",
+    "require-dir": "0.3.0"
+  },
+  "peerDependencies" : {
+    "react" : "*",
+    "react-dom" : "*"
+  },
+  "dependencies": {
+    "react-es6-component": "*"
+  }
 }
