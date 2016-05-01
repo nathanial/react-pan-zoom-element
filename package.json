@@ -1,7 +1,7 @@
 {
-  "name": "react-component-boilerplate",
+  "name": "react-pan-zoom-element",
   "version": "1.0.0",
-  "description": "Boilerplate for a React component library.",
+  "description": "React element that allows panning and zooming of child elements.",
   "main": "build/index.js",
   "files": "build",
   "scripts": {
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/nathanial/react-component-boilerplate.git"
+    "url": "git+ssh://git@github.com/nathanial/react-pan-zoom-element.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nathanial/react-component-boilerplate/issues"
+    "url": "https://github.com/nathanial/react-pan-zoom-element/issues"
   },
-  "homepage": "https://github.com/nathanial/react-component-boilerplate#readme",
+  "homepage": "https://github.com/nathanial/react-pan-zoom-element#readme",
   "devDependencies": {
     "electron-connect": "^0.3.3",
     "electron-prebuilt": "0.34.2",

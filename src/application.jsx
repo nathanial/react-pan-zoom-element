@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Component from 'react-es6-component';
-import ExampleComponent from './ExampleComponent';
+import PanZoomElement from './PanZoomElement';
 
 class Application extends Component {
   static propTypes = { }
   render(){
     return (
-      <ExampleComponent />
+      <PanZoomElement>
+        <h1>Content</h1>
+      </PanZoomElement>
     );
   }
 }
