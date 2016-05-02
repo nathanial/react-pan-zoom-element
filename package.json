@@ -40,6 +40,6 @@
   },
   "dependencies": {
     "react-es6-component": "*",
-    "centered-pan-zoom" : "1.0.0"
+    "centered-pan-zoom" : "1.0.2"
   }
 }

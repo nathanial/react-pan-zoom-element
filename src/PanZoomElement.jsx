@@ -63,7 +63,6 @@ export default class PanZoomElement extends Component {
     });
     this._startX = event.pageX;
     this._startY = event.pageY;
-    console.log("Pan Translate", this._panner.translate);
     this.setState({
       translate: this._panner.translate,
       scale: this._panner.scale
@@ -77,8 +76,6 @@ export default class PanZoomElement extends Component {
     } else {
       zoomFactor = this.state.scale * 0.95;
     }
-    console.log("Zoom", zoomFactor, {x: event.pageX, y: event.pageY})
-    console.log("Translate", this._panner.translate);
     this._panner.zoom(zoomFactor, {x: event.pageX, y: event.pageY});
     this.setState({
       translate: {
