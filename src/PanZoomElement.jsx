@@ -13,16 +13,23 @@ export default class PanZoomElement extends Component {
     super(...arguments);
     this._lastX = 0;
     this._lastY = 0;
-    this._panner = new Panner({width: this.props.width, height: this.props.height});
+    this._panner = new Panner({
+      screenWidth: this.props.width,
+      screenHeight: this.props.height
+    });
     this.state = {
       scale: this._panner.scale,
-      translate: this._panner.translate
+      translate: {
+        x: this._panner.viewport.x,
+        y: this._panner.viewport.y
+      }
     };
   }
 
   render(){
     const style = {
-      transform: `translate(${this.state.translate.x}px, ${this.state.translate.y}px) scale(${this.state.scale})`
+      transform: `translate(${this.state.translate.x}px, ${this.state.translate.y}px) scale(${this.state.scale})`,
+      transformOrigin: 'top left'
     };
     return (
       <div className="pan-zoom-element"
@@ -51,20 +58,22 @@ export default class PanZoomElement extends Component {
   }
 
   _onMouseMove(event){
-    this._panner.pan({
-      start: {
+    this._panner.panFrom(
+      {
         x: this._startX,
         y: this._startY
       },
-      end: {
+      {
         x: event.pageX,
         y: event.pageY
-      }
-    });
+      });
     this._startX = event.pageX;
     this._startY = event.pageY;
     this.setState({
-      translate: this._panner.translate,
+      translate: {
+        x: this._panner.viewport.x,
+        y: this._panner.viewport.y
+      },
       scale: this._panner.scale
     });
   }
@@ -79,8 +88,8 @@ export default class PanZoomElement extends Component {
     this._panner.zoom(zoomFactor, {x: event.pageX, y: event.pageY});
     this.setState({
       translate: {
-        x: this._panner.translate.x + 0 * (this.props.width * this._panner.scale) / 2,
-        y: this._panner.translate.y + 0 * (this.props.height * this._panner.scale) / 2
+        x: this._panner.viewport.x + 0 * (this.props.width * this._panner.scale) / 2,
+        y: this._panner.viewport.y + 0 * (this.props.height * this._panner.scale) / 2
       },
       scale: this._panner.scale
     });
