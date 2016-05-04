@@ -1,9 +1,7 @@
 // @if NODE_ENV='production'
-import ExampleComponent from './ExampleComponent';
+import PanZoomElement from './PanZoomElement';
 
-module.exports = {
-  ExampleComponent
-};
+module.exports = PanZoomElement;
 // @endif
 
 

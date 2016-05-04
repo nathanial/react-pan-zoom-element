@@ -1,6 +1,6 @@
 {
   "name": "react-pan-zoom-element",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "React element that allows panning and zooming of child elements.",
   "main": "build/index.js",
   "files": "build",

@@ -9,6 +9,12 @@ npm install react-pan-zoom-element --save
 
 ## Usage
 
+Add the CSS file
+```html
+  <link rel="stylesheet" type="text/css" href="path/to/react-pan-zoom-element/components.css">
+```
+
+Import the PanZoomElement
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
