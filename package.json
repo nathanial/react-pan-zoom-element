@@ -1,6 +1,6 @@
 {
   "name": "react-pan-zoom-element",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "React element that allows panning and zooming of child elements.",
   "main": "build/index.js",
   "files": "build",
@@ -17,7 +17,7 @@
   "bugs": {
     "url": "https://github.com/nathanial/react-pan-zoom-element/issues"
   },
-  "homepage": "https://github.com/nathanial/react-pan-zoom-element#readme",
+  "homepage": "http://nathanial.github.io/react-pan-zoom-element/",
   "devDependencies": {
     "electron-connect": "^0.3.3",
     "electron-prebuilt": "0.34.2",
