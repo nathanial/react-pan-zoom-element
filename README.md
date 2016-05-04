@@ -25,9 +25,13 @@ const App = () => (
     <h1>Zoomable thing</h1>
   </PanZoomElement>
 );
-
 ReactDOM.render(
   <App />,
   document.getElementById('app')
 );
 ```
+
+## Demo
+<http://nathanial.github.io/react-pan-zoom-element/>
+
+
