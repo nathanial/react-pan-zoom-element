@@ -31,7 +31,7 @@ ReactDOM.render(
 );
 ```
 
-## Demo
+## Documentation
 <http://nathanial.github.io/react-pan-zoom-element/>
 
 
